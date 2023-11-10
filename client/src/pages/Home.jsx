@@ -1,7 +1,7 @@
 import React from "react";
 
 const Home = () => {
-  return <div></div>;
+  return <div style={{ backgroundColor: "#fc9590" }}></div>;
 };
 
 export default Home;
