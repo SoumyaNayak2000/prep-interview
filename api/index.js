@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/user.route.js");
 const authRouter = require("./routes/auth.route.js");
+const errorMiddleware = require("./middlewares/errorHandler.middleware.js");
 dotenv.config();
 
 mongoose
@@ -21,9 +22,12 @@ const apiVersion = "/api/v1";
 
 app.use(express.json());
 
-app.use(`${apiVersion}/user`, userRouter);
-app.use(`${apiVersion}/auth`, authRouter);
-
 app.listen(portNo, () => {
   console.log("server is running on !!", portNo);
 });
+
+app.use(`${apiVersion}/user`, userRouter);
+app.use(`${apiVersion}/auth`, authRouter);
+
+app.use(errorMiddleware);
+
